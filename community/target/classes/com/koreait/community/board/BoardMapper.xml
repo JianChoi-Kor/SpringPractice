@@ -9,9 +9,22 @@
 	<insert id = "insBoard" useGeneratedKeys="true" keyProperty="boardPk">
 		INSERT INTO t_board
 		(category, seq, title, ctnt, userPK)
-		SELECT #{category}, IFNULL(MAX(${seq}), 0) +1, #{title}, #{ctnt}, #{userPk}
+		SELECT #{category}, IFNULL(MAX(seq), 0) +1, #{title}, #{ctnt}, #{userPk}
 		FROM t_board
 		WHERE category = #{category}
 	</insert>
+	
+		
+	<select id="selBoardList" resultType="BoardDomain">
+		select A.boardPk, A.seq, A.title, A.hits, A.regDt
+		, A.userPk, B.nm AS writerNm
+		From t_board A
+		inner join t_user B
+		on A.userPk = B.userPk
+		where A.category = #{category}
+		and A.isDel = 0
+		order by boardPk DESC;
+	</select>
+	
 	
 </mapper>

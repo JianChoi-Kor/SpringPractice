@@ -1,5 +1,8 @@
 package com.koreait.community.board;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,6 @@ import com.koreait.community.Const;
 import com.koreait.community.SecurityUtils;
 import com.koreait.community.model.BoardDTO;
 import com.koreait.community.model.BoardEntity;
-import com.koreait.community.model.UserEntity;
 
 @Controller
 @RequestMapping("/board")
@@ -30,7 +32,7 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public void list(BoardDTO p, Model model) {
-		
+		model.addAttribute(Const.KEY_LIST, service.selBoardList(p));
 	}
 	
 	@GetMapping("/write")
@@ -38,13 +40,12 @@ public class BoardController {
 		return "board/writeEdit";
 	}
 	
-	
-	
-	
+
 	@PostMapping("/write")
 	
 	// void or String + ajax 일때 객체 타입
 	public String write(BoardEntity p, HttpSession hs) {
+		System.out.println(p.getSeq());
 		
 		p.setUserPk(sUtils.getUserPk(hs));
 		int result = service.insBoard(p);

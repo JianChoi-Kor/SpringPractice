@@ -1,8 +1,5 @@
 package com.koreait.community;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.tiles.Attribute;
 import org.apache.tiles.AttributeContext;
 import org.apache.tiles.preparer.ViewPreparer;

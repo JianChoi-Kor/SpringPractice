@@ -10,7 +10,7 @@
 		INSERT INTO t_user
 		( uid, upw, nm )
 		VALUES
-		( #{uid}, #{upw}, #{nm} )	
+		( #{uid}, #{upw}, #{nm} )
 	</insert>
 	
 	

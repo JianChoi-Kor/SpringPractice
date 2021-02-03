@@ -10,7 +10,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/res/css/common.css">
-<script defer src="/res/js/<tiles:getAsString name="categoryJs"/>.js"></script>
+<link rel="stylesheet" href="<tiles:getAsString name="categoryCss"/>">
+<script defer src="<tiles:getAsString name="categoryJs"/>"></script>
 </head>
 <body>
 	<div id="container">

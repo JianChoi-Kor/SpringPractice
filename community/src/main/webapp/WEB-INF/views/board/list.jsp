@@ -19,7 +19,7 @@
 			<div>글이 없습니다.	</div>
 		</c:when>
 		<c:otherwise>
-			<table>
+			<table class="basic-table">
 				<tr>
 					<td>글 번호</td>
 					<td>제목</td>
@@ -28,7 +28,7 @@
 					<td>작성자</td>
 				</tr>
 			<c:forEach items="${requestScope.list}" var="item">	
-				<tr>
+				<tr class="recode" onclick="goToDetail(${item.boardPk})">
 					<td>${pageScope.item.boardPk}</td>
 					<td><c:out value="${pageScope.item.title}"/></td>
 					<td>${pageScope.item.hits}</td>
@@ -49,3 +49,7 @@
 <div>	
 	페이징
 </div>
+<script src="/res/js/board/list.js"></script>
+
+
+

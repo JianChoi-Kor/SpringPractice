@@ -11,7 +11,7 @@
 	<definition name="*/*" extends="tiles_temp">
         <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
         <put-attribute name="categoryJs" value="/res/js/{1}.js"/>
-        <put-attribute name="categorCss" value="/res/css/{1}.css"/>
+        <put-attribute name="categoryCss" value="/res/css/{1}.css"/>
     </definition>
 	
 </tiles-definitions>

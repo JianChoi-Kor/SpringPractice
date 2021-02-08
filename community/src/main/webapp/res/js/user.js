@@ -40,7 +40,7 @@ if(joinBtnElem) {
 		} else if(userPwElem.value === '') {
 			alert('비밀번호를 입력해 주세요.')
 			return
-		} else if(nm.value === '') {
+		} else if(nmElem.value === '') {
 			alert('이름을 입력해 주세요.')
 			return
 		}
@@ -77,6 +77,7 @@ if(joinBtnElem) {
 			case 1:
 			alert('회원가입에 성공했습니다.')
 			location.href = '/user/login'
+			return
 			
 			case 2:
 			alert('중복된 아이디입니다.')

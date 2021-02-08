@@ -33,8 +33,6 @@ public class UserService {
 		} else {
 			return 2;
 		}
-
-		
 	}
 
 	// 1 : 로그인 성공, 2 : 아이디 없음, 3 : 비밀번호가 틀림, 0 : 에러

@@ -30,13 +30,31 @@ if(btnDelElem) {
 // -------------------- 댓글 [start] ---------------------------- //
 
 var cmtListElem = document.querySelector('#cmtList') // 댓글리스트 나타나는 위치
+var modalElem = document.querySelector('#modal')
+var modCtntElem = document.querySelector('#modCtnt') // 수정 내용
+var modBtnElem = document.querySelector('#modBtn') // 수정 버튼
+
+if(modalElem) {
+	//	모달 닫기 버튼
+	var modalCloseElem = document.querySelector('#modClose')
+	modalCloseElem.addEventListener('click', function() {
+		modalElem.classList.add('hide')
+	})
+}
+
 
 function selCmtList() {
+	
 	fetch(`/cmt?boardPk=${data.dataset.pk}`)
 	.then(res => res.json())
 	.then(myJson => {
+		clearView()
 		createView(myJson)
 	})
+	
+	function clearView() {
+		cmtListElem.innerHTML = ''
+	}
 	
 	function createView(myJson) {
 		if(myJson.length === 0) {
@@ -47,8 +65,6 @@ function selCmtList() {
 			tableElem.append(createRecord(item))
 		})
 		
-		
-		
 		cmtListElem.append(tableElem)
 	}
 	function createRecord(item) { //한줄 레코드 만드는 함수
@@ -58,13 +74,88 @@ function selCmtList() {
 		var td_3 = document.createElement('td')
 		
 		td_1.innerText = item.ctnt
-		td_2.innerText = item.writePk
+		td_2.innerText = item.writerNm
+		
+		// 자신이 쓴 댓글이라면 삭제, 수정버튼 추가
+		var loginUserPk = parseInt(data.dataset.loginuserpk)
+		if(loginUserPk === item.writerPk) {
+			
+			// 삭제 처리
+			function delAjax() {
+				console.log('확인')
+				console.log('boardPk :' + item.boardPk)
+				console.log('seq : ' + item.seq)
+				
+				fetch(`/cmt?boardPk=${item.boardPk}&seq=${item.seq}`, {
+					method: 'delete'
+				}).then(res => res.json())
+				.then(myJson => {
+					if(myJson === 1) {
+						selCmtList()
+					} else {
+						alert('삭제를 실패하였습니다.')
+					}
+				})
+			}
+			
+			// 수정 처리
+			function modAjax(param) {
+				fetch('/cmt', {
+					method: 'put',
+					headers: {
+						'Content-Type': 'application/json'	
+					},
+					body: JSON.stringify(param)
+				}).then(res => res.json())
+				.then(myJson => {
+					
+					if(myJson === 1) {
+						modalElem.classList.add('hide')
+						selCmtList()
+					} else {
+						alert('수정에 실패했습니다.')
+					}
+				})
+			}
+			
+			var delBtn = document.createElement('input')
+			delBtn.type = 'button'
+			delBtn.value = '삭제'
+			delBtn.addEventListener('click', function() {
+				if(confirm('삭제하시겠습니까?')) {
+					delAjax()
+				}
+			})
+			
+			var editBtn = document.createElement('input')
+			editBtn.type = 'button'
+			editBtn.value = '수정'
+			editBtn.addEventListener('click', function() {
+				
+				modCtntElem.value = item.ctnt
+				modalElem.classList.remove('hide')
+				
+				modBtnElem.onclick = function() {
+					console.log('check')
+					var param = {
+						boardPk: item.boardPk,
+						seq: item.seq,
+						ctnt: modCtntElem.value
+					}
+					modAjax(param)
+				}
+								
+			})
+			
+			td_3.append(delBtn)
+			td_3.append(editBtn)
+		}
 		
 		tr.append(td_1)
 		tr.append(td_2)
 		tr.append(td_3)
 		
-		return tr
+		return tr;
 	}
 	
 	function createTable() {
@@ -114,10 +205,11 @@ if(cmtFrmElem) {
 		}).then(function(myJson) {
 			
 			if(myJson === 1) {
-				alert('성공');
+				alert('성공')
+				selCmtList()
 			}
 			else {
-				alert('실패');
+				alert('실패')
 			}
 		})
 	}

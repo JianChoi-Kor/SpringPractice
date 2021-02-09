@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.koreait.community.SecurityUtils;
+import com.koreait.community.model.CmtDomain;
 import com.koreait.community.model.CmtEntity;
 
 @RequestMapping("/cmt")

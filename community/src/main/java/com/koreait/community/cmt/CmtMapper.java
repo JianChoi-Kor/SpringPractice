@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.koreait.community.model.CmtDomain;
 import com.koreait.community.model.CmtEntity;
 
 @Mapper

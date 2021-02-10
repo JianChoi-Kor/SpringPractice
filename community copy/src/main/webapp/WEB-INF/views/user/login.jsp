@@ -15,5 +15,7 @@
 	</form>
 	<div id="errMsg"></div>
 	<a href="/user/join">Join</a>
+	
+	<script src="/resources/js/user/user.js"></script>
 </body>
 </html>

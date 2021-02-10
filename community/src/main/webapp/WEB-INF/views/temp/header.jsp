@@ -29,6 +29,12 @@
 					</a>
 				</li>
 			</c:forEach>
+			
+			<c:if test="${sessionScope.loginUser != null}">
+				<li>
+					<a href="/user/profile">프로필</a>
+				</li>
+			</c:if>
 		</ul>
 	</nav>
 </header>

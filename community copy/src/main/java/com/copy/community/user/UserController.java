@@ -3,6 +3,8 @@ package com.copy.community.user;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +22,6 @@ public class UserController {
 	@Autowired
 	UserService service;
 	
-	@GetMapping("/home")
-	public void home() {
-		
-	}
 	
 	@GetMapping("/join")
 	public void join() {
@@ -45,6 +43,18 @@ public class UserController {
 	@GetMapping("/login")
 	public void login() {
 		
+	}
+	
+	@ResponseBody
+	@PostMapping("/login")
+	public Map<String, Object> login(@RequestBody UserEntity p, HttpSession hs) {
+		System.out.println("inputUserId : " + p.getUserId());
+		System.out.println("inputUserPw : " + p.getUserPw());
+		
+		Map<String, Object> returnValue = new HashMap<>();
+		returnValue.put("result", service.login(p, hs));
+		
+		return returnValue;
 	}
 	
 	@ResponseBody

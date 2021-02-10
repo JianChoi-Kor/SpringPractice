@@ -15,7 +15,17 @@
 	
 	
 	<select id="selUser" resultType="UserEntity">
-		SELECT * FROM t_user WHERE userId = #{userId}
+		SELECT userPk, userId, userPw, nm, salt, nm, gender, profileImg
+		, DATE_FORMAT(regDt,'%y년 %m월 %d일 (%H:%i)') as regDt
+		FROM t_user 
+		<where>
+			<if test="userId != null and userId != ''">
+				userId = #{userId}
+			</if>
+			<if test="userPk > 0">
+				userPk = #{userPk}
+			</if>
+		</where>
 	</select>
 	
 	

@@ -7,6 +7,6 @@
 <title>home</title>
 </head>
 <body>
-	<h1>Home 접속 확인</h1>
+	<h1>홈페이지입니다.</h1>
 </body>
 </html>

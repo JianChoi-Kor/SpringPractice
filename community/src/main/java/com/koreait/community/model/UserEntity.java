@@ -10,6 +10,7 @@ public class UserEntity {
 	private String salt;
 	private String nm;
 	private int gender;
+	private String profileImg;
 	private String regDt;
 	
 	public int getUserPk() {
@@ -54,6 +55,11 @@ public class UserEntity {
 	public void setRegDt(String regDt) {
 		this.regDt = regDt;
 	}
-	
+	public String getProfileImg() {
+		return profileImg;
+	}
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
 	
 }

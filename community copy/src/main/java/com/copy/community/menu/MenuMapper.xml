@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  <!-- 밖에 클래스 이름보다 이 부분이 더 중요하다.	 -->
+<mapper namespace="com.copy.community.menu.MenuMapper">
+	
+	<select id="selMenuList" resultType="MenuEntity">
+		SELECT * FROM t_board_manage
+		ORDER BY orderby
+	</select>
+	
+</mapper>

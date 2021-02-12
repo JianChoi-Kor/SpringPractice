@@ -67,11 +67,21 @@ if(joinBtnElem) {
 		}).then(function(res) {
 			return res.json()
 		}).then(function(myJson) {
-			console.log(myJson)
+			proc(myJson)
 		})
 		
 	}
 	joinBtn.addEventListener('click', ajax)
+	
+	function proc(myJson) {
+		switch(myJson.result) {
+			
+			case 1:
+			alert('회원가입에 성공했습니다.')
+			location.href = '/user/login'
+			return
+		}
+	}
 }
 
 
@@ -107,18 +117,28 @@ if(loginBtnElem) {
 		}).then(function(res) {
 			return res.json()
 		}).then(function(myJson) {
-			console.log(myJson)
-			
-			if(myJson.result === 1) {
-				location.href = '/board/home'
-			} else if (myJson.result === 2) {
-				errMsgElem.innerText = '존재하지 않는 아이디입니다.'
-			} else if (myJson.result === 3) {
-				errMsgElem.innerText = '비밀번호가 틀립니다.'
-			}
+			proc(myJson)
 		})
 	}
 	loginBtnElem.addEventListener('click', ajax)
+	
+	function proc(myJson) {
+		switch(myJson.result) {
+			
+			case 1:
+			alert('로그인에 성공했습니다.')
+			location.href = '/board/home'
+			return
+			
+			case 2:
+			errMsgElem.innerText = '존재하지 않는 아이디입니다.'
+			return
+			
+			case 3:
+			errMsgElem.innerText = '비밀번호가 틀립니다.'
+			return
+		}
+	}
 }
 
 

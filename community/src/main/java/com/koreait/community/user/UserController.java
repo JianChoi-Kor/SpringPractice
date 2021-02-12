@@ -97,7 +97,6 @@ public class UserController {
 		return "redirect:/user/login";
 	}
 	
-	
 	@GetMapping("/profile")
 	public void profile(Model model, UserEntity p, HttpSession hs) {
 		

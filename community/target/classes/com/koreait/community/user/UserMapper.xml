@@ -15,11 +15,12 @@
 	
 	
 	<select id="selUser" resultType="UserEntity">
-		SELECT userPk, userId, userPw, nm, salt, nm, gender, profileImg
-		, DATE_FORMAT(regDt,'%y년 %m월 %d일 (%H:%i)') as regDt
-		FROM t_user 
+		SELECT 
+			userPk, userId, userPw, salt, nm, gender, profileImg
+			, DATE_FORMAT(regDt, '%Y년 %m월 %d일 (%H:%i)') as regDt
+		FROM t_user
 		<where>
-			<if test="userId != null and userId != ''">
+			<if test=" userId != null and userId !='' ">
 				userId = #{userId}
 			</if>
 			<if test="userPk > 0">
@@ -28,6 +29,20 @@
 		</where>
 	</select>
 	
-	
+	<update id="updUser">
+		UPDATE t_user
+		<set>
+			<if test=" userPw != null and userPw != ''">
+				userPw = #{userPw},
+			</if>
+			<if test=" salt != null and salt != ''">
+				salt = #{salt},
+			</if>
+			<if test=" profileImg != null">
+				profileImg = #{profileImg}
+			</if>
+		</set>
+		WHERE userPk = #{userPk}
+	</update>
 	
 </mapper>

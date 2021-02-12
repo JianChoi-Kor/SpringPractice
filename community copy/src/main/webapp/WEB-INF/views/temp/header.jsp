@@ -4,7 +4,7 @@
 
 <header>
 	<c:if test="${sessionScope.loginUser != null}">
-		<h1>${sessionScope.loginUser.nm}</h1>
+		<h1>접속자 아이디 : ${sessionScope.loginUser.nm}</h1>
 	</c:if>
 	
 	<nav>

@@ -9,8 +9,17 @@
 <meta charset="UTF-8">
 <title>list</title>
 </head>
+
+<!-- header부분 template Start-->
+<div>
+	<jsp:include page="/temp/header">
+		<jsp:param name="param1" value="value1"/>
+	</jsp:include>
+</div>
+<!-- header부분 template End -->
+
 <body>
-	<h1>카테고리 이름</h1>
+	<h1>카테고리 이름 어떻게 가져오지?</h1>
 
 	<div>
 		<c:if test="${sessionScope.loginUser != null}">
@@ -26,7 +35,7 @@
 				<div>글이 없습니다.</div>
 			</c:when>
 			<c:otherwise>
-				<table class="basic-table">
+				<table>
 					<tr>
 						<td>글 번호</td>
 						<td>제목</td>
@@ -35,8 +44,8 @@
 						<td>작성자</td>
 					</tr>
 				<c:forEach items="${requestScope.list}" var="item">
-					<tr class="recode" onclick="goToDetail(${item.boardPk})">
-						<td>${pageScope.item.boardPk}</td>
+					<tr onclick="goToDetail(${item.boardPk})">
+						<td>${pageScope.item.seq}</td>
 						<td><c:out value="${pageScope.item.title}"/></td>
 						<td>${pageScope.item.hits}</td>
 						<td>${pageScope.item.regDt}</td>

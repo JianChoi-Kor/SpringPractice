@@ -57,6 +57,12 @@ public class UserController {
 		return returnValue;
 	}
 	
+	@GetMapping("/logout")
+	public String logout(HttpSession hs) {
+		hs.invalidate();
+		return "redirect:/user/login";
+	}
+	
 	@ResponseBody
 	@GetMapping("/chkId/{userId}")
 	public Map<String, Object> chkId(UserEntity p) {

@@ -1,6 +1,6 @@
 package com.copy.community.model;
 
-public class BoardDomain {
+public class BoardDomain extends BoardEntity{
 	private String writerNm;
 
 	public String getWriterNm() {

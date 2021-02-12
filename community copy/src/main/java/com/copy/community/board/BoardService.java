@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.copy.community.model.BoardDTO;
 import com.copy.community.model.BoardDomain;
+import com.copy.community.model.BoardEntity;
 
 @Service
 public class BoardService {
@@ -16,6 +17,10 @@ public class BoardService {
 	
 	public List<BoardDomain> selBoardList(BoardDTO p) {
 		return mapper.selBoardList(p);
+	}
+	
+	public int insBoard(BoardEntity p) {
+		return mapper.insBoard(p);
 	}
 	
 }

@@ -56,6 +56,11 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
+	
+	<div>
+		페이징
+	</div>
 
+	<script src="/resources/js/board/list.js"></script>
 </body>
 </html>

@@ -23,8 +23,22 @@
 	</div>
 	<c:if test="${requestScope.data.userPk == sessionScope.loginUser.userPk}">
 		<div>
-			<a href="/board/"
+			<a href="/board/update?category=${requestScope.data.category}&boardPk=${requestScope.data.boardPk}">
+				<button>수정</button>
+			</a>
+			<button id="btnDel">삭제</button>
 		</div>
 	</c:if>
+	
+	<div id="data" data-loginuserpk="${sessionScope.loginUser.userPk}" data-pk="${requestScope.data.boardPk}" data-category="${requestScope.data.category}">
+		<div>번호 : ${requestScope.data.seq}</div>
+		<div>조회수 : ${requestScope.data.hits}</div>
+		<div>제목 : <c:out value="${requestScope.data.title}"/></div>
+		<div>작성일시 :<c:out value="${requestScope.data.regDt}"/></div>
+		<div>작성자 : <c:out value="${requestScope.data.writerNm}"/></div>
+		<div><c:out value="${requestScope.data.ctnt}"/></div>
+	</div>
+	
+	<script src="/resources/js/board/detail.js"></script>
 </body>
 </html>

@@ -13,4 +13,7 @@ public interface BoardMapper {
 	
 	List<BoardDomain> selBoardList(BoardDTO p);
 	int insBoard(BoardEntity p);
+	BoardDomain selBoard(BoardDTO p);
+	int updBoard(BoardEntity p);
+
 }

@@ -58,7 +58,7 @@ function selCmtList() {
 	
 	function createView(myJson) {
 		if(myJson.length === 0) {
-			return 
+			return
 		}
 		var tableElem = createTable()
 		myJson.forEach(function(item) {

@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/resources/css/cmt.css">
 <title>Insert title here</title>
 </head>
 
@@ -38,6 +39,27 @@
 		<div>작성자 : <c:out value="${requestScope.data.writerNm}"/></div>
 		<div><c:out value="${requestScope.data.ctnt}"/></div>
 	</div>
+	
+	<br>
+	<c:if test="${sessionScope.loginUser != null}">
+		<div>
+			<h4>댓글쓰기</h4>
+			<form id="cmtFrm" onsubmit="return false;">
+				<input type="text" name="ctnt">
+				<input id="cmtBtn" type="button" value="댓글등록">
+			</form>
+		</div>
+		
+		<div id="modal" class="hide">
+			<div class="modal-content">
+				<span id="modClose">X</span>
+				<input type="text" id="modCtnt">
+				<input type="button" id="modBtn" value="수정">
+			</div>
+		</div>
+	</c:if>
+	
+	<div id="cmtList"></div>
 	
 	<script src="/resources/js/board/detail.js"></script>
 </body>

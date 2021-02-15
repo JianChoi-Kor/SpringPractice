@@ -13,7 +13,20 @@
 	</c:if>
 </div>
 
+<div id="listContent" data-category="${param.category}">
+
+</div>
+
+	
 <div>
+	
+</div>
+
+<div>	
+	페이징
+</div>
+
+<!-- 
 	<c:choose>
 		<c:when test="${fn:length(requestScope.list) == 0}">
 			<div>글이 없습니다.	</div>
@@ -39,16 +52,9 @@
 			</table>
 		</c:otherwise>
 	</c:choose>
-</div>
-
 	
-<div>
+ -->
 	
-</div>
-
-<div>	
-	페이징
-</div>
 <script src="/res/js/board/list.js"></script>
 
 

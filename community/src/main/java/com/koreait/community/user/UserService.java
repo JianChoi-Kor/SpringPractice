@@ -13,6 +13,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.koreait.community.Const;
+import com.koreait.community.FileUtils;
 import com.koreait.community.SecurityUtils;
 import com.koreait.community.model.UserEntity;
 
@@ -24,6 +25,9 @@ public class UserService {
 
 	@Autowired
 	private SecurityUtils sUtils;
+	
+	@Autowired
+	private FileUtils fUtils;
 
 	public int join(UserEntity p) {
 		if (p.getUserId() == null || p.getUserId().length() < 2) {
@@ -83,36 +87,34 @@ public class UserService {
 	public int uploadProfile(MultipartFile mf, HttpSession hs) {
 		int userPk = sUtils.getLoginUserPk(hs);
 		
-		String profileImg = "user/" + userPk;
-		String basePath = hs.getServletContext().getRealPath("/res/img/" + profileImg);
-		File folder = new File(basePath);
-		if(!folder.exists()) {
-			folder.mkdirs();
-		}
-		
-		System.out.println("basePath : " + basePath);
-		
-		String originalFileName = mf.getOriginalFilename();
-		String ext = FilenameUtils.getExtension(originalFileName);
-		
-		System.out.println("ext : " + ext);
-		
-		String fileNm = UUID.randomUUID().toString() + "." + ext;
-		System.out.println("fileNm : " + fileNm);
-		profileImg += "/" + fileNm;
-		
-		try {
-			byte[] fileData = mf.getBytes();
-			File target = new File(basePath + "/" + fileNm);
-			FileCopyUtils.copy(fileData, target);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(userPk == 0 || mf == null) { // 로그인이 안 되어 있는 경우, 파일이 없는 경우
 			return 0;
 		}
 		
+		String folder = "/res/img/user/" + userPk;
+		String profileImg = fUtils.transferTo(mf, folder);
+		
+		if(profileImg == null) { // 파일 생성 실패
+			return 0;
+		}
+		
+		
 		UserEntity p = new UserEntity();
 		p.setUserPk(userPk);
+		
+		
+		
+		// 기존 이미지가 존재했다면 이미지 삭제
+		UserEntity userInfo = mapper.selUser(p);
+		if(userInfo.getProfileImg() != null) {
+			String basePath = fUtils.getBasePath(folder);
+			File file = new File(basePath, userInfo.getProfileImg());
+			if(file.exists()) {
+				file.delete();
+			}
+		}
+				
+				
 		p.setProfileImg(profileImg);
 		
 		return mapper.updUser(p);

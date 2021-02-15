@@ -106,7 +106,7 @@ public class UserController {
 	
 	@ResponseBody
 	@PostMapping("/profile")
-	public int profile(MultipartFile profileImg, HttpSession hs) {
+	public int profile(MultipartFile profileImg, HttpSession hs) { // profileImg => js에서 formData.append 부분에서의 이름과 맞춰줘야 한다.
 		System.out.println("fileName : " + profileImg.getOriginalFilename());
 		return service.uploadProfile(profileImg, hs);
 	}

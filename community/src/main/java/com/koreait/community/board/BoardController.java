@@ -46,6 +46,13 @@ public class BoardController {
 	}
 	// 화면 뿌리는 부분과 데이터를 보내는 부분 list & listData
 	
+	@ResponseBody
+	@GetMapping("/getMaxPageNum")
+	public int selMaxPageNum(BoardDTO p) {
+		return service.selMaxPageNum(p);
+	}
+	
+	
 	@GetMapping("/write")
 	public String wirte() {
 		return "board/writeEdit";

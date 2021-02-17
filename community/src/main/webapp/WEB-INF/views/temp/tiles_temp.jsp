@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/res/css/common.css?ver=2">
 <link rel="stylesheet" href="<tiles:getAsString name="categoryCss"/>">
 <script defer src="<tiles:getAsString name="categoryJs"/>"></script>
+<script defer src="/res/js/common.js"></script>
 </head>
 <body>
 	<div id="container">

@@ -7,8 +7,15 @@ public class BoardDTO {
 	private int sIdx;
 	private int rowCnt;
 	private String searchText;
+	private int searchType;
 	
 	
+	public int getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(int searchType) {
+		this.searchType = searchType;
+	}
 	public int getBoardPk() {
 		return boardPk;
 	}

@@ -8,3 +8,7 @@ for(var i=0; i<menuList.length; i++) {
 	})
 }
 
+
+function setHightlight(originVal, highlightVal) {
+	return originVal.replace(highlightVal, `<mark>${highlightVal}</mark>`)
+}

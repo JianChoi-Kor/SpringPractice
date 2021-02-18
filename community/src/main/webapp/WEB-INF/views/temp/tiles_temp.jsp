@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="stylesheet" href="/res/css/common.css?ver=2">
 <link rel="stylesheet" href="<tiles:getAsString name="categoryCss"/>">
 <script defer src="<tiles:getAsString name="categoryJs"/>"></script>

@@ -20,6 +20,7 @@ selRowCntElem.addEventListener('change', function() {
 	getMaxPageNum()
 })
 
+
 function getBoardList(page) {
 
 	if (!page) {
@@ -59,6 +60,9 @@ function getBoardList(page) {
 			return
 		}
 
+		var searchType = selSearchTypeElem.value
+		var searchText = txtSearchTextElem.value
+		
 		var tableElem = createTable()
 		myJson.forEach(function(item) {
 			tableElem.append(createRecord(item))
@@ -68,7 +72,7 @@ function getBoardList(page) {
 		listContentElem.append(tableElem)
 
 	}
-
+	
 	function createRecord(item) {
 		var tr = document.createElement('tr')
 		tr.classList.add('record')
@@ -83,10 +87,10 @@ function getBoardList(page) {
 		var td_5 = document.createElement('td')
 
 		td_1.innerText = item.seq
-		td_2.innerText = item.title
+		td_2.innerHTML = item.title
 		td_3.innerText = item.hits
 		td_4.innerText = item.regDt
-		td_5.innerText = item.writerNm
+		td_5.innerHTML = item.writerNm
 
 		tr.append(td_1)
 		tr.append(td_2)
@@ -95,6 +99,25 @@ function getBoardList(page) {
 		tr.append(td_5)
 
 		return tr;
+		/*
+		
+		let title = item.title
+		let writerNm = item.writerNm
+		// 하이라이트 처리
+		if(searchText !== '') {
+			switch(searchType) {
+				case '1': // 제목
+				case '3': // 제목 +내용
+				title = setHighlight(title, searchText)
+				break
+				case '4': // 작성자
+				writerNm = setHighlight(writerNm, searchText)
+				break
+			}
+		}
+		
+		*/
+
 	}
 
 	function createTable() {

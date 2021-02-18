@@ -44,8 +44,9 @@
 		
 		
 	<select id="selBoardList" resultType="BoardDomain">
-		select A.boardPk, A.seq, A.title, A.hits, A.regDt
-		, A.userPk, B.nm AS writerNm
+		select A.boardPk, A.seq, A.title, A.hits, A.regDt, A.userPk
+		, B.nm AS writerNm
+		, B.profileImg
 		From t_board A
 		inner join t_user B
 		on A.userPk = B.userPk

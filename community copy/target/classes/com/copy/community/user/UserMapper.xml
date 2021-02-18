@@ -6,7 +6,7 @@
   
 <mapper namespace="com.copy.community.user.UserMapper">
 	
-	<select id="selUser" resultType="UserEntity">
+	<select id="selUser" parameterType="UserEntity" resultType="UserEntity">
 		SELECT * FROM t_user WHERE userId = #{userId}
 	</select>
 	

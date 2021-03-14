@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+ 		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="studentDao" class="practice.member.dao.StudentDao" ></bean>
+	
+	
+	<bean id="registerService" class="practice.member.service.StudentRegisterService">
+		<constructor-arg ref="studentDao" ></constructor-arg>
+	</bean>
+	
+	<bean id="modifyService" class="practice.member.service.StudentModifyService">
+		<constructor-arg ref="studentDao" ></constructor-arg>
+	</bean>
+	
+	<bean id="deleteService" class="practice.member.service.StudentDeleteService">
+		<constructor-arg ref="studentDao" ></constructor-arg>
+	</bean>
+	
+	<bean id="selectService" class="practice.member.service.StudentSelectService">
+		<constructor-arg ref="studentDao" ></constructor-arg>
+	</bean>
+	
+	<bean id="allSelectService" class="practice.member.service.StudentAllSelectService">
+		<constructor-arg ref="studentDao" ></constructor-arg>
+	</bean>
+	
+</beans>

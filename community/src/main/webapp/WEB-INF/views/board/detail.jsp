@@ -24,6 +24,8 @@
 </div>
 
 <br>
+
+
 <c:if test="${sessionScope.loginUser != null}">
 	<div>
 		<h4>댓글쓰기</h4>

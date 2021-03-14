@@ -41,7 +41,7 @@ public class CmtController {
 	@PutMapping
 	public int upd(@RequestBody CmtEntity p, HttpSession hs) {
 		System.out.println("boardPk : " + p.getBoardPk());
-		System.out.println("seq : " + p.getSeq());		
+		System.out.println("seq : " + p.getSeq());
 		System.out.println("ctnt : " + p.getCtnt());
 		p.setWriterPk(sUtils.getLoginUserPk(hs));
 		return service.updCmt(p);
